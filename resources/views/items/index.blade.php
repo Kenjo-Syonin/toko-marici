@@ -27,7 +27,9 @@
                 @php $no=1; @endphp
                 @foreach ($items as $index => $barang)
                     <tr>
-                        <td>{{ $no++ }}</td>
+                        <td>
+                            {{ ($items->currentPage()-1) * ($items->perPage()) +( $index+1) }}
+                        </td>
                         <td>{{ $barang->name }}</td>
                         <td>{{ $barang->type }}</td>
                         <td>{{ $barang->price }}</td>
@@ -45,4 +47,8 @@
             @endif
         </tbody>
     </table>
+    <div class="d-flex justify-content-end">
+        <!-- links() : memunculkan button pagination -->
+        {{ $items->links() }}
+    </div>
 @endsection
